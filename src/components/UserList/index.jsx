@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import UserCard from '../UserCard';
+import UserCard from 'components/UserCard';
 import styles from './UserList.module.scss';
 
 const UserList = (props) => {

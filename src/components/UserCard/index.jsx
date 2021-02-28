@@ -2,7 +2,7 @@ const UserCard = (props) => {
   const { user } = props;
   return (
     <>
-      <img src={user.image_src} alt={`${user.first_name} ${user.last_name}`} />
+      <img src={user.imageSrc} alt={`${user.firstName} ${user.lastName}`} />
       <pre>{JSON.stringify(user, null, 4)}</pre>
     </>
   );

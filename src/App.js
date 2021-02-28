@@ -1,10 +1,19 @@
-import UserList from './components/UserList';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from 'pages/Home';
+import SignIn from 'pages/SignIn';
 
-function App() {
+function App () {
   return (
-    <>
-      <UserList />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route
+          path={['/auth', '/login', '/sign-in', '/signin']}
+          component={SignIn}
+        />
+        {/* <Route path={['/sign-up', '/signup']} component={} /> */}
+      </Switch>
+    </Router>
   );
 }
 
