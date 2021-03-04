@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Header from 'components/Header';
+import Header from 'components/AuthHeader';
 
 const Home = props => {
   const {} = props;

@@ -13,7 +13,6 @@ const LinkComponent = {
 
 const Header = props => {
   const { pathname } = useLocation();
-  console.log(pathname);
 
   return (
     <div className={styles.container}>
