@@ -1,17 +1,19 @@
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import ACTIONS from 'actions';
 import SignInForm from 'components/forms/SignIn';
 import Header from 'components/AuthHeader';
-import * as API from 'api/rest';
 
 const SignIn = props => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = async values => {
-    const {
-      data: { data },
-    } = await API.loginUser(values);
-
-    history.replace('/');
+    dispatch({
+      type: ACTIONS.LOGIN_USER_REQUEST,
+      data: values,
+      history,
+    });
   };
 
   return (

@@ -1,18 +1,21 @@
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import ACTIONS from 'actions';
 import SignUpForm from 'components/forms/SignUp';
 import AuthHeader from 'components/AuthHeader';
-import * as API from 'api/rest';
 
 const SignUp = props => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = async values => {
-    const {
-      data: { data },
-    } = await API.createUser(values);
-
-    history.replace('/');
+    dispatch({
+      type: ACTIONS.LOGIN_USER_REQUEST,
+      data: values,
+      history,
+    });
   };
+
   return (
     <div>
       <AuthHeader />
