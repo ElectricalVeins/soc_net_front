@@ -8,7 +8,7 @@ const initialState = {
 };
 
 const handlers = {
-  [ACTIONS.SIGN_OUT]: () => ({ ...initialState }),
+  [ACTIONS.SIGN_OUT_SUCCESS]: () => ({ ...initialState }),
   [ACTIONS.SIGN_UP_USER_REQUEST]: (state, action) => ({
     ...state,
     isFetching: true,
@@ -44,6 +44,14 @@ const handlers = {
     isFetching: false,
     user: null,
     error: action.error,
+  }),
+  [ACTIONS.AUTHENTICATE_SUCCESS]: (state, action) => ({
+    ...state,
+    isFetching: false,
+    user: action.user,
+  }),
+  [ACTIONS.AUTHENTICATE_ERROR]: (state, action) => ({
+    ...initialState,
   }),
 };
 

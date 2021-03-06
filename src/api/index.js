@@ -1,4 +1,6 @@
+import ACTIONS from 'actions';
 import axios from 'axios';
+import store from 'store';
 import config from './config';
 import { refreshTokens } from './rest';
 
@@ -12,14 +14,18 @@ http.interceptors.request.use(config => {
   return config;
 });
 
-axios.interceptors.response.use(
+http.interceptors.response.use(
   response => {
-    console.log('response', response);
     return response;
   },
   async error => {
     if (error.response.status === 401) {
-      await refreshTokens();
+      const {
+        tokenPair: { accessToken },
+      } = await refreshTokens();
+
+      error.config.data = localStorage.getItem('aToken');
+      store.dispatch({ type: ACTIONS.AUTHENTICATE_REQUEST });
       return http.request(error.config);
     }
     return Promise.reject(error);

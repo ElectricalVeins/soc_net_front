@@ -10,7 +10,6 @@ const UserList = (props) => {
       const { data } = await fetch(
         'http://localhost:3000/api/users'
       ).then((data) => data.json());
-      console.log(data);
       setUsers(data);
     }
     fetchUsers();

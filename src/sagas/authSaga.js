@@ -39,3 +39,26 @@ export function * signUpUser (action) {
     });
   }
 }
+
+export function * authenticate (action) {
+  try {
+    const { data: user } = yield API.authenticate();
+    yield put({
+      type: ACTIONS.AUTHENTICATE_SUCCESS,
+      user,
+    });
+  } catch (error) {
+    yield put({
+      type: ACTIONS.AUTHENTICATE_ERROR,
+      error,
+    });
+  }
+}
+
+export function * signOut (action) {
+  localStorage.removeItem('aToken');
+  localStorage.removeItem('rToken');
+  yield put({
+    type: ACTIONS.SIGN_OUT_SUCCESS,
+  });
+}
