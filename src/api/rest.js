@@ -23,5 +23,8 @@ export const authenticate = () =>
 export const loginUser = payload => authUser('/auth/sign-in', payload);
 export const signUpUser = payload => authUser('/auth/sign-up', payload);
 
-export const getUsers = ({ limit, offset }) =>
+export const getUsers = ({ limit = 10, offset = 0 }) =>
   http.get(`/users?limit=${limit}&offset=${offset}`);
+
+export const getPosts = ({ limit = 10, offset = 0 }) =>
+  http.get(`/posts?limit=${limit}&offset=${offset}`);

@@ -1,0 +1,22 @@
+@import '../../../common/styles/helpers';
+
+$avatarWidth: 100px;
+
+.container {
+  position: relative;
+  width: $avatarWidth;
+  height: $avatarWidth;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    @extend %imgAbs;
+  }
+}
+
+.initials {
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}

@@ -7,7 +7,7 @@ import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 
 function App () {
-  const { user } = useSelector(state => state.authReducer);
+  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
     if (!user) {

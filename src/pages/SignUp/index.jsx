@@ -2,7 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ACTIONS from 'actions';
 import SignUpForm from 'components/forms/SignUp';
-import AuthHeader from 'components/AuthHeader';
+import AuthHeader from 'components/Header/AuthHeader';
 
 const SignUp = props => {
   const history = useHistory();

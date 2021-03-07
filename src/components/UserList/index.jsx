@@ -1,24 +1,21 @@
 import { useState, useEffect } from 'react';
-import UserCard from 'components/UserCard';
+import { useDispatch, useSelector } from 'react-redux';
+import ACTIONS from 'actions';
+import UserCard from 'components/UserList/UserCard';
 import styles from './UserList.module.scss';
 
-const UserList = (props) => {
-  const [users, setUsers] = useState([]);
+const UserList = props => {
+  const { users, isFetching, error } = useSelector(state => state.users);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    async function fetchUsers() {
-      const { data } = await fetch(
-        'http://localhost:3000/api/users'
-      ).then((data) => data.json());
-      setUsers(data);
-    }
-    fetchUsers();
+    dispatch({ type: ACTIONS.GET_USERS_REQUEST });
   }, []);
 
   return (
     <div className={styles.container}>
-      {users.map((u) => (
-        <UserCard key={u.id} user={u} />
+      {users.map(u => (
+        <UserCard key={u.id} {...u} />
       ))}
     </div>
   );
