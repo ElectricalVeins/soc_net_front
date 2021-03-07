@@ -4,9 +4,9 @@ export const switchTheme = theme => ({ type: ACTIONS.THEME_SWITCH, theme });
 
 export const initialize = () => ({ type: ACTIONS.INITIALIZE });
 
-export const loginUserRequest = ({ data, history }) => ({
+export const loginUserRequest = ({ values, history }) => ({
   type: ACTIONS.LOGIN_USER_REQUEST,
-  data,
+  data: values,
   history,
 });
 export const loginUserSuccess = ({ user }) => ({
