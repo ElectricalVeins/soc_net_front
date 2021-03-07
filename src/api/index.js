@@ -1,6 +1,4 @@
-import ACTIONS from 'actions';
 import axios from 'axios';
-import store from 'store';
 import config from './config';
 import { refreshTokens } from './rest';
 
@@ -19,13 +17,16 @@ http.interceptors.response.use(
     return response;
   },
   async error => {
-    if (error.response.status === 401) {
+    console.log('interceptor');
+    if (error.response.status === 419) {
+      console.log('interceptor ok');
       const {
-        tokenPair: { accessToken },
+        data: {
+          tokenPair: { accessToken },
+        },
       } = await refreshTokens();
 
-      error.config.data = localStorage.getItem('aToken');
-      store.dispatch({ type: ACTIONS.AUTHENTICATE_REQUEST });
+      error.config.data = { accessToken };
       return http.request(error.config);
     }
     return Promise.reject(error);
