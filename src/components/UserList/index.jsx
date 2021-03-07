@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ACTIONS from 'actions';
+import { getUsersRequest } from 'actions/actionCreators';
 import UserCard from 'components/UserList/UserCard';
 import styles from './UserList.module.scss';
 
@@ -9,7 +9,7 @@ const UserList = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: ACTIONS.GET_USERS_REQUEST });
+    dispatch(getUsersRequest());
   }, []);
 
   return (

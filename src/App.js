@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import ACTIONS from 'actions';
+import { HashLoader } from 'react-spinners';
+import { authRequest } from 'actions/actionCreators';
 import Home from 'pages/Home';
 import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
@@ -12,9 +13,10 @@ function App () {
     app: { isInitialized },
   } = useSelector(({ auth, app }) => ({ auth, app }));
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!user) {
-      dispatch({ type: ACTIONS.AUTHENTICATE_REQUEST });
+      dispatch(authRequest());
     }
   }, []);
 

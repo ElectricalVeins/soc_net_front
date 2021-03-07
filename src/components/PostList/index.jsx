@@ -1,14 +1,14 @@
-import ACTIONS from 'actions';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PostCard from './PostCard';
+import { getPostsRequest } from 'actions/actionCreators';
 
 const PostList = props => {
   const { posts, isFetching, error } = useSelector(state => state.posts);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: ACTIONS.GET_POSTS_REQUEST });
+    dispatch(getPostsRequest());
   }, []);
 
   if (isFetching) {

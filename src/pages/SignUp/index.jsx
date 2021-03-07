@@ -1,19 +1,15 @@
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ACTIONS from 'actions';
 import SignUpForm from 'components/forms/SignUp';
 import AuthHeader from 'components/Header/AuthHeader';
+import { signUpRequest } from 'actions/actionCreators';
 
 const SignUp = props => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onSubmit = async values => {
-    dispatch({
-      type: ACTIONS.LOGIN_USER_REQUEST,
-      data: values,
-      history,
-    });
+    dispatch(signUpRequest({ values, history }));
   };
 
   return (

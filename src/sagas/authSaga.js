@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects';
-import ACTIONS from 'actions';
+import * as ActionCreator from 'actions/actionCreators';
 import * as API from 'api/rest';
 
 export function * loginUser (action) {
@@ -7,18 +7,10 @@ export function * loginUser (action) {
     const {
       data: { user },
     } = yield API.loginUser(action.data);
-
-    yield put({
-      type: ACTIONS.LOGIN_USER_SUCCESS,
-      user,
-    });
-
+    yield put(ActionCreator.loginUserSuccess({ user }));
     action.history.replace('/');
   } catch (error) {
-    yield put({
-      type: ACTIONS.LOGIN_USER_ERROR,
-      error,
-    });
+    yield put(ActionCreator.loginUserError({ error }));
   }
 }
 
@@ -27,38 +19,26 @@ export function * signUpUser (action) {
     const {
       data: { user },
     } = yield API.signUpUser(action.data);
-    yield put({
-      type: ACTIONS.SIGN_UP_USER_SUCCESS,
-      user,
-    });
+    yield put(ActionCreator.signUpSuccess({ user }));
     action.history.replace('/');
   } catch (error) {
-    yield put({
-      type: ACTIONS.SIGN_UP_USER_ERROR,
-      error,
-    });
+    yield put(ActionCreator.signUpError(error));
   }
 }
 
 export function * authenticate (action) {
   try {
     const { data: user } = yield API.authenticate();
-    yield put({
-      type: ACTIONS.AUTHENTICATE_SUCCESS,
-      user,
-    });
+    yield put(ActionCreator.authSuccess({ user }));
   } catch (error) {
-    yield put({
-      type: ACTIONS.AUTHENTICATE_ERROR,
-      error,
-    });
+    yield put(ActionCreator.authError({ error }));
+  } finally {
+    yield put(ActionCreator.initialize());
   }
 }
 
 export function * signOut (action) {
   localStorage.removeItem('aToken');
   localStorage.removeItem('rToken');
-  yield put({
-    type: ACTIONS.SIGN_OUT_SUCCESS,
-  });
+  yield put(ActionCreator.signOutSuccess());
 }

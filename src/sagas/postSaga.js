@@ -1,20 +1,14 @@
 import { put } from 'redux-saga/effects';
-import ACTIONS from 'actions';
+import * as ActionCreator from 'actions/actionCreators';
 import * as API from 'api/rest';
 
 export function * getPosts (action) {
   try {
-    const { offset = 0, limit = 10 } = action;
+    const { offset, limit } = action;
     const { data: posts } = yield API.getPosts({ offset, limit });
 
-    yield put({
-      type: ACTIONS.GET_POSTS_SUCCESS,
-      posts,
-    });
+    yield put(ActionCreator.getPostsSuccess({ posts }));
   } catch (error) {
-    yield put({
-      type: ACTIONS.GET_POSTS_ERROR,
-      error,
-    });
+    yield put(ActionCreator.getPostsError({ error }));
   }
 }

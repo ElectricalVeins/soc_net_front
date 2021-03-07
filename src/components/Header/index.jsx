@@ -1,15 +1,15 @@
-import { Button } from '@material-ui/core';
-import ACTIONS from 'actions';
-import Logo from 'components/Logo';
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Button } from '@material-ui/core';
+import Logo from 'components/Logo';
+import { signOut } from 'actions/actionCreators';
 import styles from './Header.module.scss';
 
 const Header = props => {
   const dispatch = useDispatch();
 
   const handleSignOut = useCallback(() => {
-    dispatch({ type: ACTIONS.SIGN_OUT });
+    dispatch(signOut());
   }, []);
 
   return (

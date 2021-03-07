@@ -1,4 +1,5 @@
 import http from 'api';
+import queryString from 'query-string';
 
 export const authUser = async (url, data) => {
   try {
@@ -23,8 +24,8 @@ export const authenticate = () =>
 export const loginUser = payload => authUser('/auth/sign-in', payload);
 export const signUpUser = payload => authUser('/auth/sign-up', payload);
 
-export const getUsers = ({ limit = 10, offset = 0 }) =>
-  http.get(`/users?limit=${limit}&offset=${offset}`);
+export const getUsers = ({ limit = 10, offset = 0, ...rest }) =>
+  http.get(`/users?${queryString.stringify({ limit, offset, ...rest })}`);
 
-export const getPosts = ({ limit = 10, offset = 0 }) =>
-  http.get(`/posts?limit=${limit}&offset=${offset}`);
+export const getPosts = ({ limit = 10, offset = 0, ...rest }) =>
+  http.get(`/posts?${queryString.stringify({ limit, offset, ...rest })}`);
