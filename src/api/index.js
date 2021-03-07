@@ -17,9 +17,7 @@ http.interceptors.response.use(
     return response;
   },
   async error => {
-    console.log('interceptor');
     if (error.response.status === 419) {
-      console.log('interceptor ok');
       const {
         data: {
           tokenPair: { accessToken },
