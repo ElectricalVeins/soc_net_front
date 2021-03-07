@@ -7,13 +7,24 @@ import SignIn from 'pages/SignIn';
 import SignUp from 'pages/SignUp';
 
 function App () {
-  const { user } = useSelector(state => state.auth);
+  const {
+    auth: { user },
+    app: { isInitialized },
+  } = useSelector(({ auth, app }) => ({ auth, app }));
   const dispatch = useDispatch();
   useEffect(() => {
     if (!user) {
       dispatch({ type: ACTIONS.AUTHENTICATE_REQUEST });
     }
   }, []);
+
+  if (!isInitialized) {
+    return (
+      <div className='appLoader'>
+        <HashLoader size={80} />
+      </div>
+    );
+  }
 
   return (
     <Router>

@@ -1,3 +1,5 @@
+@import './common/styles/helpers';
+
 * {
   box-sizing: border-box;
 }
@@ -24,4 +26,11 @@ img {
   width: 100px;
   height: 100px;
   object-fit: cover;
+}
+
+.appLoader {
+  @extend %flexCenter;
+  @extend %imgAbs;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.1);
 }

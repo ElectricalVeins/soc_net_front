@@ -9,3 +9,9 @@
   object-fit: cover;
   object-position: top;
 }
+
+%flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
