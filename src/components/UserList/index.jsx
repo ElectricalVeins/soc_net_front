@@ -10,6 +10,9 @@ const UserList = props => {
 
   useEffect(() => {
     dispatch(getUsersRequest());
+    return () => {
+      /* dispatch clear store ? */
+    };
   }, []);
 
   return (

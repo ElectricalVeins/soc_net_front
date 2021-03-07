@@ -9,6 +9,9 @@ const PostList = props => {
 
   useEffect(() => {
     dispatch(getPostsRequest());
+    return () => {
+      /* dispatch clear store ? */
+    };
   }, []);
 
   if (isFetching) {
