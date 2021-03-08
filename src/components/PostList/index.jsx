@@ -8,7 +8,7 @@ const PostList = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPostsRequest());
+    dispatch(getPostsRequest({ offset: posts.length }));
     return () => {
       /* dispatch clear store ? */
     };

@@ -9,7 +9,7 @@ const UserList = props => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsersRequest());
+    dispatch(getUsersRequest({ ossfet: users.length }));
     return () => {
       /* dispatch clear store ? */
     };

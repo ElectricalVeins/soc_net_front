@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
 import { authRequest } from 'actions/actionCreators';
+import socket from 'api/ws';
 
 const Home = lazy(() => import('./pages/Home'));
 const SignIn = lazy(() => import('./pages/SignIn'));
@@ -15,6 +16,7 @@ const Loader = () => (
 );
 
 const App = () => {
+  console.log(socket);
   const {
     auth: { user },
     app: { isInitialized },
